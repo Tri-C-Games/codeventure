@@ -30,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
 		ver = Input.GetAxis("Vertical");
 
 		//setting the new velocity that is the inputs multiplied by speed
-		newVel = new Vector2(hor, ver) * speed;
+		// The movement vector is normalized as to keep the speed the same regardless of if the player is travelling diagonally or not
+		newVel = new Vector2(hor, ver).normalized * speed;
 
 		//applying the new velocity
 		rb.velocity = newVel;
