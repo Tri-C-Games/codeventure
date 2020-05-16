@@ -1,2 +1,2 @@
 # codeventure
-An educational game based around c"editing code" to solve puzzles
+An educational game based around "editing code" to solve puzzles
