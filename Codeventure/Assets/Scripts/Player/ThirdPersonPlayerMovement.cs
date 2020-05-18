@@ -47,6 +47,7 @@ public class ThirdPersonPlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
             // Calculating velocity based on the maximum height we want the player to jump
+            // From the equation: v² = u² + 2aΔs
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
