@@ -2,35 +2,37 @@
 using System.Text.RegularExpressions;
 using UnityEngine;
 using System.IO;
+using System.Globalization;
 
 public class Interpreter:MonoBehaviour
 {
-	[SerializeField]
-	private Dictionary<string, float> variables=new Dictionary<string, float>();
+	CultureInfo ci = CultureInfo.InvariantCulture;
+	public Dictionary<string, float> variables;
 	private string code;
 	private string[] lines;
 	string fileName = @"Assets\Scripts\Lang\main.owo";
 
 	void Start()
 	{
-			code = File.ReadAllText(fileName);
+		variables = new Dictionary<string, float>();
+		code = File.ReadAllText(fileName);
 			lines = SeparateLines(code);
 			foreach (var line in lines)
 			{
 				ParseLine(line);
 			}
-			Debug.Log(variables);
+		foreach( var item in variables){
+			Debug.Log(item);
+			}
 		}
 
 
 		string[] SeparateLines(string _code)
 		{
 			string[] _lines = Regex.Split(_code, ";");
-			Debug.Log(_lines[0]);
 			for (int i = 0; i < _lines.Length; i++)
 			{
-				_lines[i] = Regex.Replace(_lines[i], ";| |\n\r|\n|\r", string.Empty);
-				Debug.Log(_lines[i]);
+				_lines[i] = Regex.Replace(_lines[i], " |\n\r|\n|\r", string.Empty);
 			}
 			return _lines;
 		}
@@ -44,16 +46,16 @@ public class Interpreter:MonoBehaviour
 				string[] _split = Regex.Split(_line,"=");
 				_key = _split[0];
 				_value = _split[1];
-				Debug.Log(_key);
+				Debug.Log(float.Parse(_value));
+				
 				if (variables.ContainsKey(_key))
 				{
-					variables[_key] = float.Parse(_value);
+					variables[_key] = float.Parse(_value, ci);
 				}
 				else
 				{
-					variables.Add(_key, float.Parse(_value));
+					variables.Add(_key, float.Parse(_value, ci));
 				}
-				Debug.Log("Var: " + _key + "" + variables[_key]);
 			}
 		}
 }
