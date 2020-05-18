@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System;
 using UnityEngine;
 
 public class Interpreter:MonoBehaviour
-	{
-		public Dictionary<string, float> variables;
-		public string code;
-		public string[] lines;
-		void Start()
+{
+	[SerializeField]
+	private Dictionary<string, float> variables=new Dictionary<string, float>();
+	private string code;
+	private string[] lines;
+
+	void Start()
 		{
-			code = "life = 42.0;";
+			code = "life = 42.0;\n    cool=6.9";
 			lines = SeparateLines(code);
 			foreach (var line in lines)
 			{
@@ -24,11 +24,11 @@ public class Interpreter:MonoBehaviour
 		string[] SeparateLines(string _code)
 		{
 			string[] _lines = Regex.Split(_code, ";");
-			Debug.Log(lines[0]);
+			Debug.Log(_lines[0]);
 			for (int i = 0; i < _lines.Length; i++)
 			{
-				lines[i] = Regex.Replace(_lines[i], ";| |\n\r|\n|\r", string.Empty);
-				Debug.Log(lines[i]);
+				_lines[i] = Regex.Replace(_lines[i], ";| |\n\r|\n|\r", string.Empty);
+				Debug.Log(_lines[i]);
 			}
 			return _lines;
 		}
@@ -39,10 +39,11 @@ public class Interpreter:MonoBehaviour
 			{
 				string _key;
 				string _value;
-				string[] _split = _line.Split('=');
+				string[] _split = Regex.Split(_line,"=");
 				_key = _split[0];
 				_value = _split[1];
-				if (variables.TryGetValue(_key, out float _current))
+				Debug.Log(_key);
+				if (variables.ContainsKey(_key))
 				{
 					variables[_key] = float.Parse(_value);
 				}
@@ -53,4 +54,4 @@ public class Interpreter:MonoBehaviour
 				Debug.Log("Var: " + _key + "" + variables[_key]);
 			}
 		}
-	}
+}
