@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using System.IO;
 
 public class Interpreter:MonoBehaviour
 {
@@ -8,10 +9,11 @@ public class Interpreter:MonoBehaviour
 	private Dictionary<string, float> variables=new Dictionary<string, float>();
 	private string code;
 	private string[] lines;
+	string fileName = @"Assets\Scripts\Lang\main.owo";
 
 	void Start()
-		{
-			code = "life = 42.0;\n    cool=6.9";
+	{
+			code = File.ReadAllText(fileName);
 			lines = SeparateLines(code);
 			foreach (var line in lines)
 			{
