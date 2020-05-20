@@ -72,7 +72,7 @@ public class Interpreter : MonoBehaviour
 
 	bool ParseExpressions(string _expression, out string results)
 	{
-		if (variables.ContainsKey(_expression))
+        /*if (variables.ContainsKey(_expression))
 		{
 			results = variables[_expression];
 			return true;
@@ -81,7 +81,10 @@ public class Interpreter : MonoBehaviour
 		{
 			results = _expression;
 			return true;
-		}
+		}*/ // You might want to try this: - Since ParseExpressions is still a WIP this may not actually work so it depends on how you (Jix) handle this method
+        variables.TryGetValue(_expression, out dynamic _value);
+        results = _value;
+        return true;
 	}
 
     void AddVariable(string _key, string _value)
