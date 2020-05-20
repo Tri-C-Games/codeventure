@@ -108,14 +108,7 @@ public class Interpreter : MonoBehaviour
             return; //TODO: Error handling
         }
 
-        /*if (variables.ContainsKey(_key))
-        {
-            variables[_key] = parsedValue;
-        }
-        else
-        {
-            variables.Add(_key, parsedValue);
-        }*/ // Remove this comment block when you have read this - This can be simplified to the following: - It will automatically add the key and the value if the key does not already exist.
+        // Adds the variable to the variables dictionary. If the variable does not already exist it will add it automatically.
         variables[_key] = parsedValue;
         return;
     }
