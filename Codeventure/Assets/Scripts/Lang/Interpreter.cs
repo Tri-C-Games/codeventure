@@ -5,7 +5,7 @@ using System.IO;
 using System.Globalization;
 using System.Linq;
 
-public class Interpreter:MonoBehaviour
+public class Interpreter : MonoBehaviour
 {
 	CultureInfo ci = CultureInfo.InvariantCulture;
 	public Dictionary<string, dynamic> variables;
@@ -17,53 +17,53 @@ public class Interpreter:MonoBehaviour
 	{
 		variables = new Dictionary<string, dynamic>();
 		code = File.ReadAllText(fileName);
-			lines = SeparateLines(code);
-			foreach (var line in lines)
-			{
-				ParseLine(line);
-			}
-		foreach( var item in variables){
-			Debug.Log(item);
-			}
+		lines = SeparateLines(code);
+		foreach (var line in lines)
+		{
+			ParseLine(line);
 		}
+		foreach (var item in variables) {
+			Debug.Log(item);
+		}
+	}
 
 	void PRINT(string text)
 	{
 		Debug.Log(text);
 	}
-		string[] SeparateLines(string _code)
+	string[] SeparateLines(string _code)
+	{
+		string[] _lines = Regex.Split(_code, ";");
+		for (int i = 0; i < _lines.Length; i++)
 		{
-			string[] _lines = Regex.Split(_code, ";");
-			for (int i = 0; i < _lines.Length; i++)
-			{
-				_lines[i] = Regex.Replace(_lines[i], " |\n\r|\n|\r", string.Empty);
-			}
-			return _lines;
+			_lines[i] = Regex.Replace(_lines[i], " |\n\r|\n|\r", string.Empty);
 		}
+		return _lines;
+	}
 
-		void ParseLine(string _line)
+	void ParseLine(string _line)
+	{
+		if (_line.ToLower().IndexOf('=') != -1)
 		{
-			if (_line.ToLower().IndexOf('=') != -1)
-			{
-				string _key;
-				string _value;
-				string[] _split = Regex.Split(_line,"=");
-				_key = _split[0];
-				_value = _split[1];
-				//TODO: Parse expressions
-				Var(_key,_value);
-			}
-			else if (_line.ToLower().IndexOf('(') != -1&& _line.ToLower().IndexOf(')') != -1)
-			{
-				string _func;
-				string _args;
-				string[] _split = Regex.Split(_line, "(");
-				_func = _split[0];
-				_args = _split[1];
-				_args = Regex.Replace(_args, ")", string.Empty);
-				Debug.Log(float.Parse(_args));
-				
-			}
+			string _key;
+			string _value;
+			string[] _split = Regex.Split(_line, "=");
+			_key = _split[0];
+			_value = _split[1];
+			//TODO: Parse expressions
+			Var(_key, _value);
+		}
+		else if (_line.ToLower().IndexOf('(') != -1 && _line.ToLower().IndexOf(')') != -1)
+		{
+			string _func;
+			string _args;
+			string[] _split = Regex.Split(_line, "(");
+			_func = _split[0];
+			_args = _split[1];
+			_args = Regex.Replace(_args, ")", string.Empty);
+			Debug.Log(float.Parse(_args));
+
+		}
 	}
 	void Var(string _key, string _value)
 	{
@@ -73,15 +73,15 @@ public class Interpreter:MonoBehaviour
 		{
 			_value = _value.Trim('"');
 			parsedValue = _value;
-		} 
-		else if (double.TryParse(_value,out _result)){
+		}
+		else if (double.TryParse(_value, out _result)) {
 			parsedValue = _result;
 		}
 		else
 		{
 			return; //TODO: Error handling
 		}
-		
+
 
 		if (variables.ContainsKey(_key))
 		{
@@ -91,5 +91,7 @@ public class Interpreter:MonoBehaviour
 		{
 			variables.Add(_key, parsedValue);
 		}
-	}
-}
+		return;
+	} }
+
+
