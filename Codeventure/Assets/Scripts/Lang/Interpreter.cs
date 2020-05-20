@@ -104,6 +104,7 @@ public class Interpreter : MonoBehaviour
         {
             parsedValue = _resultBool;
         }
+        // TODO: Assigning methods to variables
         // Otherwise - Handle errors
         else
         {
