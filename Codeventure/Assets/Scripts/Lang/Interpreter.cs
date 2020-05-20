@@ -108,14 +108,15 @@ public class Interpreter : MonoBehaviour
             return; //TODO: Error handling
         }
 
-        if (variables.ContainsKey(_key))
+        /*if (variables.ContainsKey(_key))
         {
             variables[_key] = parsedValue;
         }
         else
         {
             variables.Add(_key, parsedValue);
-        }
+        }*/ // Remove this comment block when you have read this - This can be simplified to the following: - It will automatically add the key and the value if the key does not already exist.
+        variables[_key] = parsedValue;
         return;
     }
 }
