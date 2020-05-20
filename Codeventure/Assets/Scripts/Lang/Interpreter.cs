@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using System.IO;
 using System.Globalization;
-using System.Linq;
 
 public class Interpreter : MonoBehaviour
 {
@@ -55,7 +54,7 @@ public class Interpreter : MonoBehaviour
             _key = _split[0];
             _value = _split[1];
             //TODO: Parse expressions
-            Var(_key, _value);
+            AddVariable(_key, _value);
         }
         else if (_line.ToLower().IndexOf('(') != -1 && _line.ToLower().IndexOf(')') != -1)
         {
@@ -83,20 +82,27 @@ public class Interpreter : MonoBehaviour
 		}
 	}
 
-    void Var(string _key, string _value)
+    void AddVariable(string _key, string _value)
     {
         dynamic parsedValue;
-        double _result;
-      
+
+        // Strings
         if (_value[0] == '"' && _value[_value.Length - 1] == '"')
         {
             _value = _value.Substring(1, _value.Length - 2);
             parsedValue = _value;
         }
-        else if (double.TryParse(_value, out _result))
+        // Numbers
+        else if (double.TryParse(_value, out double _resultString))
         {
-            parsedValue = _result;
+            parsedValue = _resultString;
         }
+        // Booleans (True/False)
+        else if (bool.TryParse(_value, out bool _resultBool))
+        {
+            parsedValue = _resultBool;
+        }
+        // Otherwise - Handle errors
         else
         {
             return; //TODO: Error handling
