@@ -114,7 +114,7 @@ public class Interpreter : MonoBehaviour
             return; //TODO: Error handling
         }
 
-        // Adds the variable to the variables dictionary. If the variable does not already exist it will add it automatically.
+        // Add the variable to the variables dictionary. If the variable does not already exist it will add it automatically.
         variables[_key] = parsedValue;
         return;
     }
