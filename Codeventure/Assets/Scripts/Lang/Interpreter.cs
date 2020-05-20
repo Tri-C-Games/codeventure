@@ -68,12 +68,12 @@ public class Interpreter:MonoBehaviour
 	void Var(string _key, string _value)
 	{
 		dynamic parsedValue;
+		double _result;
 		if (_value.TakeWhile(c => c == '"').Count() > 2)
-		{ 
+		{
 			_value = _value.Trim('"');
 			parsedValue = _value;
-		}
-			double _result;
+		} 
 		else if (double.TryParse(_value,out _result)){
 			parsedValue = _result;
 		}
