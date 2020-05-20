@@ -46,6 +46,7 @@ public class Interpreter : MonoBehaviour
 
     void ParseLine(string _line)
     {
+        // Variable assignment
         if (_line.Contains("="))
         {
             string _key;
@@ -56,6 +57,7 @@ public class Interpreter : MonoBehaviour
             //TODO: Parse expressions
             AddVariable(_key, _value);
         }
+        // Statements (If/Methods/Loops)
         else if (_line.Contains("(") && _line.Contains(")"))
         {
             string _func;
