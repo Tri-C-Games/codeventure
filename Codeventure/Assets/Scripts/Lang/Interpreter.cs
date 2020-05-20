@@ -69,15 +69,25 @@ public class Interpreter : MonoBehaviour
         }
     }
 
+	bool ParseExpressions(string _expression, out string results)
+	{
+		if (variables.ContainsKey(_expression))
+		{
+			results = variables[_expression];
+			return true;
+		}
+		else
+		{
+			results = _expression;
+			return true;
+		}
+	}
+
     void Var(string _key, string _value)
     {
         dynamic parsedValue;
         double _result;
-        /*if (_value.Count(c => c == '"') > 1) // I replaced TakeWhile with Count (TakeWhile skips the rest so will not have a count greater than one).
-        {
-            _value = _value.Trim('"');
-            parsedValue = _value;
-        }*/ // Remove this comment block after you've read it. This does not work for strings such as """, "b"" and ""l" as Trim removes the leading and trailing characters (I feel like it will also break for some other variables but I haven't tested them yet e.g. hello""hi).
+      
         if (_value[0] == '"' && _value[_value.Length - 1] == '"')
         {
             _value = _value.Substring(1, _value.Length - 2);
