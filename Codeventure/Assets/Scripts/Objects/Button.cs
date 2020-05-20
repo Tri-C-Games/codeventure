@@ -3,11 +3,22 @@
 public class Button : MonoBehaviour
 {
     [SerializeField]
-    private GameObject door;
+    private GameObject doorObject;
+
+    private Door door;
+
+    private void Start()
+    {
+        door = doorObject.GetComponent<Door>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Button Pressed.");
-        door.GetComponent<Door>().open();
+        door.Open();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        door.Close();
     }
 }
