@@ -16,3 +16,5 @@ throwanerror = "test";
 				anotherproblem = 3.14159;
 pain = "this" "should" "not" "work";
 pleasefix = "this""should""not""work";
+woah = "test";
+owo=throwanerror;
