@@ -69,22 +69,21 @@ public class Interpreter : MonoBehaviour
             Debug.Log(float.Parse(_args));
         }
     }
-
+	//this parses mathematical operations and variable value uses 
 	bool ParseExpressions(string _expression, out string results)
 	{
-        /*if (variables.ContainsKey(_expression))
+        if (variables.TryGetValue(_expression, out dynamic _value))
 		{
-			results = variables[_expression];
+			//it tries to parse, if this operation succeeds, it returns the value
+			results = _value;
 			return true;
 		}
 		else
 		{
+			//or else it returns the previous value
 			results = _expression;
 			return true;
-		}*/ // You might want to try this: - Since ParseExpressions is still a WIP this may not actually work so it depends on how you (Jix) handle this method
-        variables.TryGetValue(_expression, out dynamic _value);
-        results = _value;
-        return true;
+		} 
 	}
 
     void AddVariable(string _key, string _value)
@@ -107,7 +106,7 @@ public class Interpreter : MonoBehaviour
         {
             parsedValue = _resultBool;
         }
-        // TODO: Assigning methods to variables
+        // TODO: Assigning methods to variables (now relocated to ParseExpression)
         // Otherwise - Handle errors
         else
         {
