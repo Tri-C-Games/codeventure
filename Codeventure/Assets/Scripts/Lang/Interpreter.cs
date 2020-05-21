@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using System.IO;
 using System.Globalization;
@@ -39,9 +38,8 @@ public class Interpreter : MonoBehaviour
         string[] _lines = _code.Split(';');
         for (int i = 0; i < _lines.Length; i++)
         {
-            // TODO - Fix issue where the variable "throw an error" is considered the same as "throwanerror" (the first should throw an error)
-            // Remove all whitespace
-            _lines[i] = Regex.Replace(_lines[i], @"\s+", string.Empty);
+            // Remove all line breaks
+            _lines[i] = _lines[i].Replace(System.Environment.NewLine, string.Empty);
         }
         return _lines;
     }
@@ -54,8 +52,8 @@ public class Interpreter : MonoBehaviour
             string _key;
             string _value;
             string[] _split = _line.Split('=');
-            _key = _split[0];
-            _value = _split[1];
+            _key = _split[0].Trim(' ', '\t');
+            _value = _split[1].Trim(' ', '\t');
             //TODO: Parse expressions
             AddVariable(_key, _value);
         }
@@ -90,6 +88,13 @@ public class Interpreter : MonoBehaviour
 
     void AddVariable(string _key, string _value)
     {
+        // Throw an error if the variable name has spaces in it
+        if (_key.Contains(" "))
+        {
+            ThrowError();
+            return;
+        }
+
         dynamic parsedValue;
 
         // Strings
@@ -112,12 +117,16 @@ public class Interpreter : MonoBehaviour
         // Otherwise - Handle errors
         else
         {
-            //TODO: Error handling
+            ThrowError();
             return;
         }
 
         // Add the variable to the variables dictionary. If the variable does not already exist it will add it automatically.
         variables[_key] = parsedValue;
-        return;
+    }
+
+    void ThrowError()
+    {
+        // TODO: Error handling
     }
 }
