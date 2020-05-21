@@ -56,8 +56,14 @@ public class Interpreter : MonoBehaviour
             string[] _split = _line.Split('=');
             _key = _split[0];
             _value = _split[1];
-            //TODO: Parse expressions
-            AddVariable(_key, _value);
+			if (ParseExpressions(_value,out string _output))
+			{
+				AddVariable(_key, _output);
+			}
+			else
+			{
+				AddVariable(_key, _value);
+			}
         }
         // Statements (If/Methods/Loops)
         else if (_line.Contains("(") && _line.Contains(")"))
