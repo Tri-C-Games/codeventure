@@ -3,7 +3,7 @@
 public class Door : MonoBehaviour
 {
     [SerializeField]
-    private bool editable;
+    private bool editable = false;
 
     [SerializeField]
     private Sprite openSprite, closedSprite, editableOpenSprite, editableClosedSprite;

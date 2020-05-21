@@ -3,7 +3,7 @@
 public class Button : MonoBehaviour
 {
     [SerializeField]
-    private bool editable;
+    private bool editable = false;
 
     [SerializeField]
     private GameObject doorObject;
