@@ -121,5 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3fbeba1083ef14e94ba82527f702ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  editable: 0
   openSprite: {fileID: 21300000, guid: ee63e3fb63a122443ba71e72df0f425b, type: 3}
   closedSprite: {fileID: 21300000, guid: 5c71408bf064bc440893e8eb97170eb2, type: 3}
+  editableOpenSprite: {fileID: 21300000, guid: 36960be3868e04f4d85ef8c67b6987f2, type: 3}
+  editableClosedSprite: {fileID: 21300000, guid: 3f95691767b55544490d1a7dc694a369,
+    type: 3}

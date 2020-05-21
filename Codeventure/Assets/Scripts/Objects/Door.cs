@@ -1,28 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Door : MonoBehaviour
 {
     [SerializeField]
-    private Sprite openSprite;
+    private bool editable;
+
     [SerializeField]
-    private Sprite closedSprite;
+    private Sprite openSprite, closedSprite, editableOpenSprite, editableClosedSprite;
 
     private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.sprite = editable ? editableClosedSprite : closedSprite;
     }
 
     public void Open()
     {
-        spriteRenderer.sprite = openSprite;
+        spriteRenderer.sprite = editable ? editableOpenSprite : openSprite;
     }
 
     public void Close()
     {
-        spriteRenderer.sprite = closedSprite;
+        spriteRenderer.sprite = editable ? editableClosedSprite : closedSprite;
     }
 }

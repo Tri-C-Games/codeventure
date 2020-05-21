@@ -121,4 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be213bd321fa7924198f2d64edc5b782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
+  editable: 0
+  doorObject: {fileID: 0}
+  sprite: {fileID: 21300000, guid: dc64d9c4dc49cad4ca5613ae91534f2b, type: 3}
+  editableSprite: {fileID: 21300000, guid: fc001f9ccb8ea094bb9ea670fe1c6844, type: 3}

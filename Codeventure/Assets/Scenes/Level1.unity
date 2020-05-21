@@ -138,6 +138,11 @@ PrefabInstance:
       propertyPath: doorObject
       value: 
       objectReference: {fileID: 933989510}
+    - target: {fileID: 5131673622195259302, guid: 12b2d4929bd25f24ea5b19cee3690e2e,
+        type: 3}
+      propertyPath: editable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6811006325387243009, guid: 12b2d4929bd25f24ea5b19cee3690e2e,
         type: 3}
       propertyPath: m_Name
@@ -1502,6 +1507,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577046746}
     m_Modifications:
+    - target: {fileID: 2291003970575834790, guid: e92d8399ee6085f4d92eb9a5c64a0d73,
+        type: 3}
+      propertyPath: editable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7932625347233802733, guid: e92d8399ee6085f4d92eb9a5c64a0d73,
         type: 3}
       propertyPath: m_LocalPosition.x
