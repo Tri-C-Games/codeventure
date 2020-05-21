@@ -33,4 +33,9 @@ public class PlayerMovement : MonoBehaviour
         // Applying the new velocity
         rb.velocity = newVel;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.isTrigger = true;
+    }
 }
