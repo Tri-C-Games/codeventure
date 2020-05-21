@@ -36,10 +36,12 @@ public class Interpreter : MonoBehaviour
 
     string[] SeparateLines(string _code)
     {
-        string[] _lines = Regex.Split(_code, ";");
+        string[] _lines = _code.Split(';');
         for (int i = 0; i < _lines.Length; i++)
         {
-            _lines[i] = Regex.Replace(_lines[i], " |\n\r|\n|\r", string.Empty);
+            // TODO - Fix issue where the variable "throw an error" is considered the same as "throwanerror" (the first should throw an error)
+            // Remove all whitespace
+            _lines[i] = Regex.Replace(_lines[i], @"\s+", string.Empty);
         }
         return _lines;
     }
@@ -51,7 +53,7 @@ public class Interpreter : MonoBehaviour
         {
             string _key;
             string _value;
-            string[] _split = Regex.Split(_line, "=");
+            string[] _split = _line.Split('=');
             _key = _split[0];
             _value = _split[1];
             //TODO: Parse expressions
@@ -62,10 +64,10 @@ public class Interpreter : MonoBehaviour
         {
             string _func;
             string _args;
-            string[] _split = Regex.Split(_line, "(");
+            string[] _split = _line.Split('(');
             _func = _split[0];
             _args = _split[1];
-            _args = Regex.Replace(_args, ")", string.Empty);
+            _args = _args.Replace(")", string.Empty);
             Debug.Log(float.Parse(_args));
         }
     }
@@ -111,7 +113,8 @@ public class Interpreter : MonoBehaviour
         // Otherwise - Handle errors
         else
         {
-            return; //TODO: Error handling
+            //TODO: Error handling
+            return;
         }
 
         // Add the variable to the variables dictionary. If the variable does not already exist it will add it automatically.
