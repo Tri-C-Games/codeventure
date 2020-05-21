@@ -94,6 +94,8 @@ public class Interpreter : MonoBehaviour
 
     void AddVariable(string _key, string _value)
     {
+        // TODO: Fix this bug - `pleasefix = "this""should""not""work";` - As the variable's value suggests, this should not work.
+
         // Throw an error if the variable name has spaces in it
         if (_key.Contains(" "))
         {
