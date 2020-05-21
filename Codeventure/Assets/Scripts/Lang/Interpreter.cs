@@ -121,6 +121,10 @@ public class Interpreter : MonoBehaviour
         {
             parsedValue = _resultBool;
         }
+        else if (_value.ToLower() == "none")
+        {
+            parsedValue = null;
+        }
         // TODO: Assigning methods to variables (now relocated to ParseExpression)
         // Otherwise - Handle errors
         else

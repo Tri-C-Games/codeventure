@@ -18,3 +18,4 @@ pain = "this" "should" "not" "work";
 pleasefix = "this""should""not""work";
 woah = "test";
 owo=throwanerror;
+empty = none;
