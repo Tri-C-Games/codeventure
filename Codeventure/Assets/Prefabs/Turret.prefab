@@ -103,6 +103,7 @@ MonoBehaviour:
   detectPlayerMask:
     serializedVersion: 2
     m_Bits: 256
+  shootCooldown: 0.5
 --- !u!82 &5819666019256649207
 AudioSource:
   m_ObjectHideFlags: 0

@@ -9,7 +9,11 @@ public class TurretScript : MonoBehaviour
 
     public LayerMask detectPlayerMask;
 
+    public float shootCooldown;
+
     const float range = 100;
+
+    private float shootCooldownTimer;
 
     private void Update()
     {
@@ -17,14 +21,18 @@ public class TurretScript : MonoBehaviour
 
         RaycastHit2D foundPlayer = Physics2D.Raycast(firePoint.position, firePoint.right, range, detectPlayerMask);
 
-        if (foundPlayer)
+        if (foundPlayer && shootCooldownTimer <= 0)
         {
             Shoot();
         }
+
+        shootCooldownTimer -= Time.deltaTime;
     }
 
     private void Shoot()
     {
+        shootCooldownTimer = shootCooldown;
+
         Instantiate(bullet, firePoint.position, firePoint.rotation);
         fireSound.Play();
     }
