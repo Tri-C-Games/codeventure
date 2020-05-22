@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2632191778905658492}
   - component: {fileID: 3012769278669358138}
   - component: {fileID: 5819666019256649207}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,9 @@ MonoBehaviour:
   firePoint: {fileID: 4815805248022606586}
   bullet: {fileID: 2323723443288756138, guid: bfcf84e0f99014e95999b09e543e7b24, type: 3}
   fireSound: {fileID: 5819666019256649207}
+  detectPlayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!82 &5819666019256649207
 AudioSource:
   m_ObjectHideFlags: 0
@@ -205,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4815805248022606586}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

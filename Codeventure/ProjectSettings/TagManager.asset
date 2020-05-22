@@ -14,11 +14,11 @@ TagManager:
   - 
   - 
   - Player
-  - Ground
-  - 
-  - 
-  - 
-  - 
+  - Tiles
+  - Buttons
+  - Boxes
+  - Turrets
+  - Bullets
   - 
   - 
   - 

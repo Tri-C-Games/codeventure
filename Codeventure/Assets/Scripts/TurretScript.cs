@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 
 public class TurretScript : MonoBehaviour
 {
@@ -7,14 +8,18 @@ public class TurretScript : MonoBehaviour
     public GameObject bullet;
     public AudioSource fireSound;
 
+    public LayerMask detectPlayerMask;
+
+    const float range = 100;
+
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right);
+        RaycastHit2D foundPlayer = Physics2D.Raycast(firePoint.position, firePoint.right, range, detectPlayerMask);
         Quaternion rotation = Quaternion.LookRotation
             (target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
         transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
-        if (hit && hit.collider.name == "Player")
+        if (foundPlayer)
         {
             Shoot();
         }
@@ -22,6 +27,6 @@ public class TurretScript : MonoBehaviour
     public void Shoot()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
-        fireSound.Play(0);
+        fireSound.Play();
     }
 }

@@ -10,4 +10,9 @@ public class BulletScript : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = transform.right * speed;
         Destroy(gameObject, 1f);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
