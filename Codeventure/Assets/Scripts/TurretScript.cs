@@ -6,6 +6,7 @@ public class TurretScript : MonoBehaviour {
   public Transform target;
   public Transform firePoint;
   public GameObject bullet;
+  public AudioSource fireSound;
 
     void Update() {
       RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right);
@@ -20,5 +21,6 @@ public class TurretScript : MonoBehaviour {
       }
       public void Shoote() {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
+        fireSound.Play(0);
       }
     }
