@@ -11,7 +11,7 @@ public class TurretScript : MonoBehaviour
 
     public float shootCooldown;
 
-    const float range = 100;
+    private const float range = 100;
 
     private float shootCooldownTimer;
 
