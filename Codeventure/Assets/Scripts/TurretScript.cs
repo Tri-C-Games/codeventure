@@ -14,10 +14,9 @@ public class TurretScript : MonoBehaviour
 
     private void Update()
     {
+        transform.right = target.transform.position - transform.position;
+
         RaycastHit2D foundPlayer = Physics2D.Raycast(firePoint.position, firePoint.right, range, detectPlayerMask);
-        Quaternion rotation = Quaternion.LookRotation
-            (target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
-        transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
         if (foundPlayer)
         {
