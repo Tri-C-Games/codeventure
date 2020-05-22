@@ -12,7 +12,7 @@ public class TurretScript : MonoBehaviour
 
     const float range = 100;
 
-    void Update()
+    private void Update()
     {
         RaycastHit2D foundPlayer = Physics2D.Raycast(firePoint.position, firePoint.right, range, detectPlayerMask);
         Quaternion rotation = Quaternion.LookRotation
@@ -24,7 +24,8 @@ public class TurretScript : MonoBehaviour
             Shoot();
         }
     }
-    public void Shoot()
+
+    private void Shoot()
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
         fireSound.Play();
