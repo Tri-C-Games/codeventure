@@ -33,4 +33,15 @@ public class PlayerMovement : MonoBehaviour
         // Applying the new velocity
         rb.velocity = newVel;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Hurt();
+    }
+
+    private void Hurt()
+    {
+        // TODO
+        print("Player was hurt!");
+    }
 }
