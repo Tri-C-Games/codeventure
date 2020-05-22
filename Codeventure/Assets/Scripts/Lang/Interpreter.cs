@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.IO;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 public class Interpreter : MonoBehaviour
 {
@@ -35,11 +36,11 @@ public class Interpreter : MonoBehaviour
 
     string[] SeparateLines(string _code)
     {
-        string[] _lines = _code.Split(';');
+        string[] _lines = Regex.Split(_code,";");
         for (int i = 0; i < _lines.Length; i++)
         {
             // Remove all line breaks
-            _lines[i] = _lines[i].Replace(System.Environment.NewLine, string.Empty);
+            _lines[i] = Regex.Replace(lines[i],"\n\r|\n|\r", string.Empty);
         }
         return _lines;
     }
@@ -51,7 +52,7 @@ public class Interpreter : MonoBehaviour
         {
             string _key;
             string _value;
-            string[] _split = _line.Split('=');
+            string[] _split = Regex.Split(_line,"=");
             _key = _split[0].Trim(' ', '\t');
             _value = _split[1].Trim(' ', '\t');
 			if (ParseExpressions(_value,out string _output))
