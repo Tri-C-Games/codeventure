@@ -14,7 +14,15 @@ public class Door : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        spriteRenderer.sprite = editable ? editableClosedSprite : closedSprite;
+        if (editable)
+        {
+            gameObject.tag = "Editable";
+            spriteRenderer.sprite = editableClosedSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = closedSprite;
+        }
     }
 
     public void Open()

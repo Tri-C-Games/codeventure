@@ -21,7 +21,15 @@ public class Button : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        spriteRenderer.sprite = editable ? editableSprite : sprite;
+        if (editable)
+        {
+            gameObject.tag = "Editable";
+            spriteRenderer.sprite = editableSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = sprite;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

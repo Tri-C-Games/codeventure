@@ -2066,6 +2066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   codeEditor: {fileID: 1398989792}
+  minPlayerDistToEditableObject: 1.5
 --- !u!1 &1290497965
 GameObject:
   m_ObjectHideFlags: 0

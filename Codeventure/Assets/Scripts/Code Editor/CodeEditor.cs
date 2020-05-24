@@ -6,6 +6,8 @@ public class CodeEditor : MonoBehaviour
 
     public GameObject codeEditor;
 
+    public float minPlayerDistToEditableObject = 1.5f;
+
     // Update is called once per frame
     private void Update()
     {
@@ -15,9 +17,13 @@ public class CodeEditor : MonoBehaviour
             {
                 Resume();
             }
-            else
+            else if (IsPlayerNearEditableObject())
             {
                 Pause();
+            }
+            else
+            {
+                // TODO: Notify player that they aren't near an editable object.
             }
         }
     }
@@ -34,5 +40,20 @@ public class CodeEditor : MonoBehaviour
         codeEditor.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
+    }
+
+    private bool IsPlayerNearEditableObject()
+    {
+        GameObject player = GameObject.Find("Player");
+        GameObject[] editableObjects = GameObject.FindGameObjectsWithTag("Editable");
+        foreach (GameObject editableObject in editableObjects)
+        {
+            float dist = Vector3.Distance(editableObject.transform.position, player.transform.position);
+            if (dist <= minPlayerDistToEditableObject)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
