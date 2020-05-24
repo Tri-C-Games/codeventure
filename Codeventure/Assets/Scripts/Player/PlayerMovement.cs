@@ -44,4 +44,7 @@ public class PlayerMovement : MonoBehaviour
         // TODO
         print("Player was hurt!");
     }
+    public void Restart() {
+        
+    }
 }
