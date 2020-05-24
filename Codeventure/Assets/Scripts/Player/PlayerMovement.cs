@@ -34,8 +34,14 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = newVel;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        other.isTrigger = true;
+        Hurt();
+    }
+
+    private void Hurt()
+    {
+        // TODO
+        print("Player was hurt!");
     }
 }

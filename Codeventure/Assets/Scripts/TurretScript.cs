@@ -1,26 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TurretScript : MonoBehaviour {
-  public Transform target;
-  public Transform firePoint;
-  public GameObject bullet;
-  public AudioSource fireSound;
+public class TurretScript : MonoBehaviour
+{
+    public Transform target;
+    public Transform firePoint;
+    public GameObject bullet;
+    public AudioSource fireSound;
 
-    void Update() {
-      RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right);
-      Quaternion rotation = Quaternion.LookRotation
-          (target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
-      transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+    public LayerMask detectPlayerMask;
 
-      if(hit) {
-        if(hit.collider.name == "Player"){
-          Shoote();
-        }}
-      }
-      public void Shoote() {
-        Instantiate(bullet, firePoint.position, firePoint.rotation);
-        fireSound.Play(0);
-      }
+    public float shootCooldown;
+
+    private const float range = 100;
+
+    private float shootCooldownTimer;
+
+    private void Update()
+    {
+        transform.right = target.transform.position - transform.position;
+
+        RaycastHit2D foundPlayer = Physics2D.Raycast(firePoint.position, firePoint.right, range, detectPlayerMask);
+
+        if (foundPlayer && shootCooldownTimer <= 0)
+        {
+            Shoot();
+        }
+
+        shootCooldownTimer -= Time.deltaTime;
     }
+
+    private void Shoot()
+    {
+        shootCooldownTimer = shootCooldown;
+
+        Instantiate(bullet, firePoint.position, firePoint.rotation);
+        fireSound.Play();
+    }
+}
