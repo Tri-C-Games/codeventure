@@ -1,12 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
+using TMPro;
+using UnityEngine;
 
 public class CodeEditor : MonoBehaviour
 {
     public static bool gamePaused = false;
 
     public GameObject codeEditor;
+    public GameObject inputField;
+    public GameObject lineNumbers;
+
+    private TMP_InputField inputFieldTMP;
+    private TMP_InputField lineNumbersTMP;
+    //private TMP_Text lineNumbersTMP;
 
     public float minPlayerDistToEditableObject = 1.5f;
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        inputFieldTMP = inputField.GetComponent<TMP_InputField>();
+        lineNumbersTMP = lineNumbers.GetComponent<TMP_InputField>();//lineNumbers.GetComponent<TMP_Text>();
+    }
 
     // Update is called once per frame
     private void Update()
@@ -55,5 +71,15 @@ public class CodeEditor : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void OnValueChanged()
+    {
+        int numberOfLines = Regex.Split(inputFieldTMP.text, "\n").Count();
+        lineNumbersTMP.text = "";
+        for (int i = 1; i <= numberOfLines; i++)
+        {
+            lineNumbersTMP.text += i + "\n";
+        }
     }
 }
