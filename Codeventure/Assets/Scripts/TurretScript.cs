@@ -23,13 +23,13 @@ public class TurretScript : MonoBehaviour
 
         if (foundPlayer && shootCooldownTimer <= 0)
         {
-            Shoot();
+            Action();
         }
 
         shootCooldownTimer -= Time.deltaTime;
     }
 
-    private void Shoot()
+    private void Action()
     {
         shootCooldownTimer = shootCooldown;
 
